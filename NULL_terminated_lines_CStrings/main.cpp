@@ -1,4 +1,4 @@
-#include <iostream>
+Ôªø#include <iostream>
 #include <Windows.h>
 #include <conio.h>
 using namespace std;
@@ -29,15 +29,15 @@ void main()
 	//char str[] = "Hello";
 	const int n = 40;
 	char str[n];
-	cout << "¬‚Â‰ËÚÂ ÒÚÓÍÛ: ";
+	cout << "–í–≤–µ–¥–∏—Ç–µ —Å—Ç—Ä–æ–∫—É: ";
 	//SetConsoleCP(1251);
 	//cin >> str;
 	cin.getline(str, n);
 
 	//SetConsoleCP(866);
 	cout << str << endl;
-	cout << "–‡ÁÏÂ ÒÚÓÍË ‚ ·‡ÈÚ‡ı: " <<sizeof(str) << endl;
-	cout << "–‡ÁÏÂ ÒÚÓÍË ‚ ÒËÏ‚ÓÎ‡ı: " << StrLen(str) << endl;
+	cout << "–†–∞–∑–º–µ—Ä —Å—Ç—Ä–æ–∫–∏ –≤ –±–∞–π—Ç–∞—Ö: " <<sizeof(str) << endl;
+	cout << "–†–∞–∑–º–µ—Ä —Å—Ç—Ä–æ–∫–∏ –≤ —Å–∏–º–≤–æ–ª–∞—Ö: " << StrLen(str) << endl;
 	to_upper(str);
 	cout << str << endl;
 	to_lower(str);
@@ -47,11 +47,11 @@ void main()
 	shrink(str);
 	cout << str << endl;
 
-	cout << (is_polindrome(str) ? "ƒ‡": "ÕÂÚ") << endl;
+	cout << (is_polindrome(str) ? "–î–∞": "–ù–µ—Ç") << endl;
 	cout << str << endl;
 
 
-	cout << "ASCII Ú‡·ÎËˆ‡:" << endl;
+	cout << "ASCII —Ç–∞–±–ª–∏—Ü–∞:" << endl;
 	//ASCII();
 	
 	
@@ -68,11 +68,11 @@ void to_upper(char str[])
 {
 	for (int i = 0; str[i]; i++)
 	{
-		if (str[i] >= 'a' && str[i] <= 'z' || str[i] >= '‡' &&  str[i]<= 'ˇ' )
+		if (str[i] >= 'a' && str[i] <= 'z' || str[i] >= '–∞' &&  str[i]<= '—è' )
 		{
 			str[i] -= 32;
 		}
-		if (str[i] == '∏')str[i] -= 16;
+		if (str[i] == '—ë')str[i] -= 16;
 	}
 }
 
@@ -80,23 +80,23 @@ void to_lower(char str[])
 {
 	for (int i = 0; str[i]; i++)
 	{
-		if (str[i] >= 'A' && str[i] <= 'Z' || str[i] >= '¿' && str[i] <= 'ﬂ')
+		if (str[i] >= 'A' && str[i] <= 'Z' || str[i] >= '–ê' && str[i] <= '–Ø')
 		{
 			str[i] += 32;
 		}
-		if (str[i] == '®')str[i] += 16;
+		if (str[i] == '–Å')str[i] += 16;
 
 	}
 }
 
 void capitalize(char str[])
 {
-	if (str[0] >= 'a' && str[0] <= 'z' || str[0] >= '‡' && str[0] <= 'ˇ')str[0] -= 32;
-	else if (str[0] == '∏')str[0] -= 16;
+	if (str[0] >= 'a' && str[0] <= 'z' || str[0] >= '–∞' && str[0] <= '—è')str[0] -= 32;
+	else if (str[0] == '—ë')str[0] -= 16;
 	for (int i = 1; str[i]; i++)
 	{
-		if ((str[i] >= 'a' && str[i] <= 'z' || str[i] >= '‡' && str[i] <= 'ˇ') && str[i-1] ==' ' )str[i] -= 32;
-		else if (str[i] == '∏' && str[i-1] == ' ')str[i] -= 16;
+		if ((str[i] >= 'a' && str[i] <= 'z' || str[i] >= '–∞' && str[i] <= '—è') && str[i-1] ==' ' )str[i] -= 32;
+		else if (str[i] == '—ë' && str[i-1] == ' ')str[i] -= 16;
 	}
 }
 
@@ -135,12 +135,12 @@ bool is_polindrome(char str[])
 	char* buffer = new char[size+1] {};
 	//for (int i = 0; str[i]; i++)buffer[i] = str[i];
 	strcpy(buffer, str); //String copy. 
-	                     //buffer - ÒÚÓÍ‡ ÔÓÎÛ˜‡ÚÂÎ¸, 
-		                 //str - ÒÚÓÍ‡ - ËÒÚÓ˜ÌËÍ
+	                     //buffer - —Å—Ç—Ä–æ–∫–∞ –ø–æ–ª—É—á–∞—Ç–µ–ª—å, 
+		                 //str - —Å—Ç—Ä–æ–∫–∞ - –∏—Å—Ç–æ—á–Ω–∏–∫
 
 	remove_symbol(buffer, ' ');
 	to_lower(buffer);
-	//ŒÔÂ‰ÂÎˇÂÏ ‰ÎËÌÛ ÒÚÓÍË
+	//–û–ø—Ä–µ–¥–µ–ª—è–µ–º –¥–ª–∏–Ω—É —Å—Ç—Ä–æ–∫–∏
 	size = strlen(buffer);
 	for (int i = 0; i < (size/2); i++)
 	{
