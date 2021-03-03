@@ -18,6 +18,7 @@ void capitalize(char str[]);
 void shrink(char str[]);
 void remove_symbol(char str[], char symbol);
 bool is_polindrome(char str[]);
+bool is_int_number(char str[]);
 
 void main()
 {
@@ -48,6 +49,9 @@ void main()
 	cout << str << endl;
 
 	cout << (is_polindrome(str) ? "Да": "Нет") << endl;
+	cout << str << endl;
+
+	cout << (is_int_number(str) ? "Да" : "Нет") << endl;
 	cout << str << endl;
 
 
@@ -154,4 +158,15 @@ bool is_polindrome(char str[])
 	delete[] buffer;
 	return true;
 }
+
+bool is_int_number(char str[])
+{
+	for (int i = 0; str[i]; i++)
+	{
+		if (!(str[i] >= '0' && str[i] <= '9')) return false;
+		else return true;
+	}
+
+}
+
 
