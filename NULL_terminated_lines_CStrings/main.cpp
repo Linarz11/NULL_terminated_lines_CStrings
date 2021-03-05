@@ -18,16 +18,24 @@ void capitalize(char str[]);
 void shrink(char str[]);
 void remove_symbol(char str[], char symbol);
 bool is_polindrome(char str[]);
-bool is_int_number(char str[]);
 
+//Numeric functions
+bool is_int_number(char str[]);// ОБъявление функции (Function declaration)
+int to_int_number(char str[]);
+
+bool is_bin_number(char str[]);
+int bin_to_dec(char str[]);
+
+//#define BASE_STRING_OPERATIONS
 void main()
 {
 	setlocale(LC_ALL, "Russian");
 	system("CHCP 1251");
 	system("CLS");
+#ifdef BASE_STRING_OPERATIONS
 	//char str[] = { 'H', 'e', 'l', 'l', 'o', 0 };
 
-	//char str[] = "Hello";
+//char str[] = "Hello";
 	const int n = 40;
 	char str[n];
 	cout << "Введите строку: ";
@@ -37,7 +45,7 @@ void main()
 
 	//SetConsoleCP(866);
 	cout << str << endl;
-	cout << "Размер строки в байтах: " <<sizeof(str) << endl;
+	cout << "Размер строки в байтах: " << sizeof(str) << endl;
 	cout << "Размер строки в символах: " << StrLen(str) << endl;
 	to_upper(str);
 	cout << str << endl;
@@ -48,7 +56,7 @@ void main()
 	shrink(str);
 	cout << str << endl;
 
-	cout << (is_polindrome(str) ? "Да": "Нет") << endl;
+	cout << (is_polindrome(str) ? "Да" : "Нет") << endl;
 	cout << str << endl;
 
 	cout << (is_int_number(str) ? "Да" : "Нет") << endl;
@@ -56,9 +64,22 @@ void main()
 
 
 	cout << "ASCII таблица:" << endl;
-	//ASCII();
-	
-	
+	//ASCII();  
+#endif // BASE_STRING_OPERATIONS
+
+
+	const int n = 256;
+	char str[n] = {};
+	cout << "Введите строку: "; 
+	//cin >> str;
+	cin.getline(str, n);
+	//cout << (is_int_number(str) ? "Число" : "Не число") << endl;
+	//cout << str * 2 << endl;
+	//cout << to_int_number(str)*10;
+
+	cout << "Строка " << (is_bin_number(str) ? "" : "НЕ ") << "является двоичным числом" << endl;
+	cout << str << "(bin) = " << bin_to_dec(str) << "(dec)" << endl;
+
 }
 
 int StrLen(char str[])
@@ -161,12 +182,64 @@ bool is_polindrome(char str[])
 
 bool is_int_number(char str[])
 {
+	/*for (int i = 0; str[i]; i++)
+	{
+		if (!(str[i] >= '0' && str[i] <= '9') && str[i]==' ') return false;
+	}
+	 return true;*/
+
 	for (int i = 0; str[i]; i++)
 	{
-		if (!(str[i] >= '0' && str[i] <= '9')) return false;
-		else return true;
+		if (!(str[i] >= '0' && str[i] <= '9') && str[i]!=' ')return false;
+		if (str[i] == ' ' && str[i + 1] == ' ')return false;
 	}
+	return true;
+}
 
+int to_int_number(char str[])
+{
+	if (!is_int_number(str))return 0;
+	int number = 0;
+	for (int i = 0; str[i]; i++)
+	{
+		
+		{
+			if (str[i] == ' ')continue;
+			number *= 10; //Сдвигаем число на разряд влево(освобождаем младший разряд)
+			number += str[i] - 48;
+		}
+	}
+	return number;
+
+}
+
+bool is_bin_number(char str[])
+{
+	for (int i = 0; str[i]; i++)
+	{
+		if (str[i] != '0' && str[i] != '1' && str[i] != ' ')return false;
+		if (str[i - 1] == ' ' && str[i] == ' ' && str[i + 1] == ' ')
+			return false;
+	}
+	return true;
+}
+
+int bin_to_dec(char str[])
+{
+
+	if (!is_bin_number(str))return 0;
+	int n = StrLen(str);
+	int decimal = 0;// конечное десятичное число
+	int weight = 1;//Весовой коэффициент разряда
+	for (int i = n-1; i>=0; i--)
+	{
+		if (str[i] != ' ')
+		{
+			decimal += (str[i] - 48)*weight;
+			weight *= 2;
+		}
+	}
+	return decimal;
 }
 
 
